@@ -7,3 +7,5 @@ composer.lock
 /.project
 *.log
 deployment.properties
+deployment.properties
+*.properties
