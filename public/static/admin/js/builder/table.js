@@ -141,18 +141,22 @@ jQuery(document).ready(function() {
             $_filter_content = dolphin._filter_content,
             $_field_display  = dolphin._field_display,
             $data  = {
-                table: self.data('table') || '', // 数据表名
-                field: self.data('field') || '', // 数据库字段名
+                token: self.data('token') || '', // Token
                 map: self.data('map') || '', // 筛选条件
                 options: self.data('options') || '', // 选项
                 list: self.data('list') || ''
             };
 
+        var width = $(window).width();
+        if (width > 500) {
+            width = 500;
+        }
+
         layer.open({
             type: 1,
             title: '<i class="fa fa-filter"></i> 筛选',
             shadeClose: true,
-            area: ['500px', '530px'],
+            area: [width+'px', '530px'],
             btn:['确定', '取消'],
             content: '<div class="block-content" id="filter-check-content"><i class="fa fa-cog fa-spin"></i> 正在读取...</div>',
             success: function () {
