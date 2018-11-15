@@ -17,7 +17,7 @@ class Index extends Admin
         $order = $this->getOrder();
         // 数据列表
         $data_list = BookModel::where($map)->order($order)->paginate();
-
+        
         // 使用ZBuilder快速创建数据表格
         return ZBuilder::make('table')
             ->setPageTitle('图书列表') // 页面标题
@@ -27,6 +27,9 @@ class Index extends Admin
                 ['id', 'ID'],
                 ['img','封面','picture'],
                 ['name', '角色名称'],
+                ['cat_id','分类','callback',function($val){
+                    return CategoryModel::getName($val);
+                }],
                 ['author', '作者'],
                 ['bookconcern', '出版社'],
                 ['from', '来源'],
@@ -37,7 +40,8 @@ class Index extends Admin
             ])
             ->addTopButtons('add,enable,disable,delete') // 批量添加顶部按钮
             ->addRightButtons('edit,delete') // 批量添加右侧按钮
-            ->replaceRightButton(['id' => 1], '<button class="btn btn-danger btn-xs" type="button" disabled>不可操作</button>') // 修改id为1的按钮
+            ->addRightButton('see', ['href' => url('Content/index', ['id' => '__id__'])])
+            //->replaceRightButton(['id' => 1], '<button class="btn btn-danger btn-xs" type="button" disabled>不可操作</button>') // 修改id为1的按钮
             ->setRowList($data_list) // 设置表格数据
             ->fetch(); // 渲染模板
     }
@@ -62,7 +66,8 @@ class Index extends Admin
             }
         }
         $category_list = CategoryModel::getList();
-        // 使用ZBuilder快速创建表单
+        $type_list = config('book_type_list');
+         // 使用ZBuilder快速创建表单
         return ZBuilder::make('form')
             ->setPageTitle('新增') // 设置页面标题
             ->addFormItems([ // 批量添加表单项
@@ -73,6 +78,7 @@ class Index extends Admin
                 ['text', 'publish', '出版社', '选填'],
                 ['text', 'from', '来源','选填'],
                 ['textarea', 'description', '描述'],
+                ['radio','type','类型','图书类型(音频、视频、文字等)',$type_list,2],
                 ['radio', 'status', '状态', '', ['禁用', '启用'], 1]
             ])
             ->fetch();
