@@ -32,6 +32,41 @@ class Content extends Admin
         }
         return $instance;
     }
+    /**
+     * 添加内容
+     */
+    public function addcontent($id)
+    {
+        return $this->getBookType($id)->addcontent($id);
+    }
+    /**
+     * 编辑
+     */
+    public function edit($id = '')
+    {
+        return $this->getBookType($id)->edit($id);
+    }
+    /**
+     * 禁用
+     */
+    public function mydisable( $id, $record = [])
+    {
+        return $this->getBookType($id)->disable($record);
+    }
+    /**
+     * 启用
+     */
+    public function myenable($id, $record = [])
+    {
+        return $this->getBookType($id)->enable($record);
+    }
+    /**
+     * 删除
+     */
+    public function mydelete($id, $record = [])
+    {
+        return $this->getBookType($id)->delete($record);
+    }
 }
 
 ?>
