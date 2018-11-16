@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+     {block name="page-title"}<title>{$page_title|default='首页'} | {:config('web_site_title')} - 飞阅网</title>{/block}
+	<meta name="description" content="{:config('web_site_description')}">
+    <meta name="author" content="caiweiming">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0,user-scalable=0">
+    {block name="plugins-css"}{/block}
+    <!--=== Favicon ===-->
+<link rel="shortcut icon" href="__HOME_IMG__/favicon.ico" type="image/x-icon"/>
+
+<!--== Google Fonts ==-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700" rel="stylesheet">
+
+<!--=== Bootstrap CSS ===-->
+<link href="__HOME_CSS__/vendor/bootstrap.min.css" rel="stylesheet">
+<!--=== Font-Awesome CSS ===-->
+<link href="__HOME_CSS__/vendor/font-awesome.css" rel="stylesheet">
+<!--=== Plugins CSS ===-->
+<link href="__HOME_CSS__/plugins.css" rel="stylesheet">
+<!--=== Helper CSS ===-->
+<link href="__HOME_CSS__/helper.min.css" rel="stylesheet">
+<!--=== Main Style CSS ===-->
+<link href="__HOME_CSS__/style.css" rel="stylesheet">
+
+<!-- Modernizer JS -->
+<script src="__HOME_JS__/vendor/modernizr-2.8.3.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+ 
+<!--== Start Header Section ==-->
+<header id="header-area" >
+    {block name="preheader"}
+    	{include file="public/preheader" /}
+    {/block}
+	
+   {block name="middlehead"}
+   		{include file="public/search" /}
+   {/block}
+   {block name="menu"}
+   		{include file="public/menu" /}
+   {/block}
+    
+</header>
+<!--== End Header Section ==-->
+{block name="slider"}
+
+{/block}
+<!--== Start Feature Products  Area ==-->
+<div id="product-area-wrapper">
+	{block name="content"}
+    
+    {/block}
+</section>
+<!--== End Call To Action ==-->
+{block name="footer"}
+	{include file="public/footer" /}
+{/block}
+<!--=======================Javascript============================-->
+<!--=== Jquery Min Js ===-->
+<script src="__HOME_JS__/vendor/jquery-3.3.1.min.js"></script>
+<!--=== Jquery Migrate Min Js ===-->
+<script src="__HOME_JS__/vendor/jquery-migrate-1.4.1.min.js"></script>
+<!--=== Popper Min Js ===-->
+<script src="__HOME_JS__/vendor/popper.min.js"></script>
+<!--=== Bootstrap Min Js ===-->
+<script src="__HOME_JS__/vendor/bootstrap.min.js"></script>
+<!--=== Ajax Mail Js ===-->
+<script src="__HOME_JS__/ajax-mail.js"></script>
+<!--=== Plugins Min Js ===-->
+<script src="__HOME_JS__/plugins.js"></script>
+
+<!--=== Active Js ===-->
+<script src="__HOME_JS__/active.js"></script>
+{block name="script"}
+
+{/block}
+</body>
+</html>
