@@ -11,6 +11,7 @@
 
 namespace app\index\controller;
 use app\index\model\Categories as CategoryModel;
+use app\index\model\Books as BookModel;
 /**
  * 前台首页控制器
  * @package app\index\controller
@@ -20,11 +21,14 @@ class Index extends Home
     public function index()
     {
         $categories = $this->getRandomCatgory();
-        foreach ($categories as $key => $val) {
-
+        foreach ($categories as $key => &$val) {
+            $val['info_list'] = BookModel::getRandomList($val['id']);
         }
+
+
         $this->assign('category_list',CategoryModel::getAllCategories());
         $this->assign('list',$categories);
+        $this->assign('page_title','首页');
        return $this->fetch();
     }
     /**
