@@ -8,44 +8,36 @@
                         <button class="btn btn-category d-none d-lg-inline-block"><i class="fa fa-bars"></i> 分类
                         </button>
                         <ul class="category-list-menu">
-                            <li class="category-item-parent dropdown-show">
-                                <a href="#" class="category-item arrow-toggle">
-                                    <img src="__HOME_IMG__/icons/desktop.png" alt="Computer"/>
-                                    <span>计算机</span>
-                                </a>
-                                <ul class="mega-menu-wrap dropdown-nav">
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Laptop</a>
-                                        <ul>
-                                            <li><a href="#">Has Laptop Price</a></li>
-                                            <li><a href="#">Has Laptop Ram</a></li>
-                                            <li><a href="#">Has Laptop Rom</a></li>
-                                            <li><a href="#">Has Laptop SSD</a></li>
-                                        </ul>
-                                    </li>
-                                  
-                                </ul>
-                            </li>
+							{foreach name="category_list" key="k" item="cat"}
+								{empty name="cat.sons"}
+									<li class="category-item-parent {if $k >= 3} hidden {/if}">
+										<a href="#" class="category-item">
+											<img src="__HOME_IMG__/icons/camera.png" alt={$cat.name}"/>
+											<span>{$cat.name}</span>
+										</a>
+									</li>
+								{else/}
+									<li class="category-item-parent dropdown-show {if $k >= 3} hidden {/if}">
+										<a href="#" class="category-item arrow-toggle">
+											<img src="__HOME_IMG__/icons/desktop.png" alt="{$cat.name}"/>
+											<span>{$cat.name}</span>
+										</a>
+										<ul class="mega-menu-wrap dropdown-nav">
+											<li class="mega-menu-item">
+												<!--<a href="#" class="mega-item-title">Laptop</a>-->
+												<ul>
+													{foreach name="cat.sons" item="son"}
+														<li><a href="#">{$son.name}</a></li>
+													{/foreach}
 
-                            
-                            <li class="category-item-parent">
-                                <a href="#" class="category-item">
-                                    <img src="__HOME_IMG__/icons/camera.png" alt="Camera"/>
-                                    <span>Camera</span>
-                                </a>
-                            </li>
-                            <li class="category-item-parent">
-                                <a href="#" class="category-item">
-                                    <img src="__HOME_IMG__/icons/fan.png" alt="Camera"/>
-                                    <span>Electronics</span>
-                                </a>
-                            </li>
-                          
-                            <li class="category-item-parent hidden">
-                                <a href="#" class="category-item">
-                                    <img src="__HOME_IMG__/icons/camera.png" alt="Camera"/>
-                                    <span>照相机</span>
-                                </a>
-                            </li>
+												</ul>
+											</li>
+
+										</ul>
+									</li>
+								{/empty}
+							{/foreach}
+
                            
                             <li class="category-item-parent">
                                 <a href="#" class="category-item btn-more">更多</a>
@@ -60,14 +52,7 @@
                     <div class="main-menu-wrap">
                         <nav class="mainmenu">
 						    <ul class="main-navbar clearfix">
-						        <li class="dropdown-show"><a href="index.html" class="arrow-toggle">首页</a>
-						            <ul class="dropdown-nav sub-dropdown">
-						                <li><a href="index.html">Home Layout 1</a></li>
-						                <li><a href="index2.html">Home Layout 2</a></li>
-						                <li><a href="index3.html">Home Layout 3</a></li>
-						                <li><a href="index4.html">Home Layout 4</a></li>
-						            </ul>
-						        </li>
+						        <li ><a href="index.html" >首页</a></li>
 						        <li><a href="about.html">关于我们</a></li>
 						        <li class="dropdown-show"><a href="#" class="arrow-toggle">Shop</a>
 						            <ul class="mega-menu-wrap dropdown-nav">

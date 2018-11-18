@@ -30,4 +30,11 @@ class Home extends Common
             $this->error('站点已经关闭，请稍后访问~');
         }
     }
+    /**
+     * 获取分类
+     */
+    protected function getAllCategories()
+    {
+
+    }
 }

@@ -56,9 +56,10 @@ class Audio extends Admin
             ])
             //->addTopButtons('add,enable,disable') // 批量添加顶部按钮
             ->addTopButton('custom',$btn_add)
-            ->addTopButton('custom',$btn_enable)
-            ->addTopButton('custom',$btn_disable)
+        /*    ->addTopButton('custom',$btn_enable)
+            ->addTopButton('custom',$btn_disable)*/
             ->addRightButtons('edit') // 批量添加右侧按钮
+            ->hideCheckbox()
             ->setRowList($data_list) // 设置表格数据
             ->fetch(); // 渲染模板
     }

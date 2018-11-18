@@ -7,11 +7,10 @@
                     <!-- Product Tab Menu Start -->
                     <nav class="product-teb-menu">
                         <ul class="nav justify-content-center" role="tablist">
-                            <li><a class="active" href="#new-products" id="new-product-tab" data-toggle="tab">New
-                                Products</a></li>
-                            <li><a href="#sale-products" id="sale-product-tab" data-toggle="tab">OnSale</a></li>
-                            <li><a href="#feature-products" id="feature-product-tab" data-toggle="tab">Feature
-                                Products</a></li>
+                            {foreach $list as $key => $val}
+                                <li><a  href="#category_{$val.id}" id="category_tab_{$val.id}" data-toggle="tab">{$val.name}</a></li>
+                            {/foreach}
+
                         </ul>
                     </nav>
                     <!-- Product Tab Menu End -->

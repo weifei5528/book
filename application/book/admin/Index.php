@@ -31,16 +31,16 @@ class Index extends Admin
                     return CategoryModel::getName($val);
                 }],
                 ['author', '作者'],
-                ['bookconcern', '出版社'],
+                ['publish', '出版社'],
                 ['from', '来源'],
                 ['status', '状态', 'switch'],
                 ['create_time', '添加时间', 'datetime'],
                 ['update_time', '更新时间', 'datetime'],
                 ['right_button', '操作', 'btn']
             ])
-            ->addTopButtons('add,enable,disable,delete') // 批量添加顶部按钮
-            ->addRightButtons('edit,delete') // 批量添加右侧按钮
-            ->addRightButton('see', ['href' => url('Content/index', ['id' => '__id__'])])
+            ->addTopButtons('add,enable,disable') // 批量添加顶部按钮
+            ->addRightButtons('edit') // 批量添加右侧按钮
+            ->addRightButton('see', ['href' => url('Content/index', ['id' => '__id__']),'icon'=>'fa fa-fw fa-list-alt','title'=>'列表'])
             //->replaceRightButton(['id' => 1], '<button class="btn btn-danger btn-xs" type="button" disabled>不可操作</button>') // 修改id为1的按钮
             ->setRowList($data_list) // 设置表格数据
             ->fetch(); // 渲染模板
