@@ -116,7 +116,11 @@ class PlayerCreator {
         //this.render_doms.blur.css('background-image', 'url("' + imageUrl + '")');
 
         //切换列表中的item的类名 play
-        this.song_list.find('td.pro-remove > a > li').eq(this.song_index).attr('class','fas fa-play').siblings().attr('class','fa fa-music');
+        console.log($("td.pro-remove > a > i"));
+        let allI = this.song_list.find('td.pro-remove > a > i');
+        allI.eq(this.song_index).attr('class','fa fa-play');
+        allI.eq(this.song_index).siblings().attr('class','fa fa-music');
+       // this.song_list.find('td.pro-remove > a > i').eq(this.song_index).attr('class','fa fa-play').siblings().attr('class','fa fa-music');
     }
     //绑定各种事件
     bindEventListener() {
