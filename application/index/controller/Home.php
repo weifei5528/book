@@ -12,13 +12,15 @@
 namespace app\index\controller;
 
 use app\common\controller\Common;
-
+use app\index\model\Categories as CategoryModel;
+use app\index\model\Books as BookModel;
 /**
  * 前台公共控制器
  * @package app\index\controller
  */
 class Home extends Common
 {
+    protected $original = true;//原始地址
     /**
      * 初始化方法
      * @author 蔡伟明 <314013107@qq.com>
@@ -36,5 +38,30 @@ class Home extends Common
     protected function getAllCategories()
     {
 
+    }
+    /**
+     * 随机分类
+     * @param int $num 默认的随机获得的子分类个数
+     * @return array
+     */
+    protected function getRandomCatgory($num = 3)
+    {
+        $list = CategoryModel::getRandomCat($num);
+        return $list;
+    }
+    
+    /**
+     * 设置分类
+     */
+    protected function setCategory()
+    {
+        $categories = $this->getRandomCatgory();
+        foreach ($categories as $key => &$val) {
+            $val['info_list'] = BookModel::getRandomList($val['id']);
+        }
+        
+        
+        $this->assign('category_list',CategoryModel::getAllCategories());
+        $this->assign('list',$categories);
     }
 }

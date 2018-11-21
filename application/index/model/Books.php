@@ -24,5 +24,20 @@ class Books extends Model
         $rand_keys = array_rand($data,$num);
         return self::where(['id' => ['in', $rand_keys]])->select();
     }
-
+    /**
+     * 获取指定的图书的类型
+     * @param int $id  图书的id
+     */
+    public static function getBookType($id)
+    {
+        return self::where(['id' => $id])->value('type');
+    }
+    /**
+     * 获取图书的封面
+     * @param
+     */
+    public static function getImg($id)
+    {
+        return self::where(['id' => $id])->value('img');
+    }
 }

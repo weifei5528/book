@@ -1,0 +1,17 @@
+<!--== Start Page Breadcrumb ==-->
+<div class="page-breadcrumb-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-breadcrumb">
+                    <ul class="nav">
+                    	{foreach $bread_list as $bk => $bread}
+                    		<li><a href="{$bread.url}" {if $bread['active']} clase="active" {/if} >{$bread.name}</a></li>
+                    	{/foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--== End Page Breadcrumb ==-->

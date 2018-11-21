@@ -25,11 +25,10 @@
                                     {foreach $v['info_list'] as $ck => $cv}
                                     <div class="single-product-item">
                                         <figure class="product-thumb">
-                                            <a href="single-product.html"><img src="{:get_file_path($cv['img'])}"
-                                                                               alt="{$cv.name}"></a>
-                                            <a href="#" class="btn btn-round btn-cart" title="Quick View"
-                                               data-toggle="modal" data-target="#quickView"><i
-                                                    class="fa fa-eye"></i></a>
+                                            <a href="{:url('Play/index',array('id' => $cv['id']))}">
+                                            	<img src="{:get_file_path($cv['img'])}" alt="{$cv.name}">
+                                            </a>
+                                           
                                         </figure>
                                         <div class="product-details">
                                             <h2 class="product-title"><a href="single-product.html">{$cv.name}</a></h2>
@@ -38,18 +37,11 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
+                                                
                                             </div>
-                                            <span class="product-price">$40.99</span>
+                                           
 
-                                            <div class="product-meta">
-                                                <a href="#" class="btn btn-round btn-cart" title="Add to Cart"><i
-                                                        class="fa fa-shopping-cart"></i></a>
-                                                <a href="wishlist.html" class="btn btn-round btn-cart"
-                                                   title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                <a href="compare.html" class="btn btn-round btn-cart"
-                                                   title="Add to Compare"><i class="fa fa-exchange"></i></a>
-                                            </div>
+                                          
                                         </div>
                                     </div>
                                     {/foreach}
