@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 
 namespace app\index\controller;
-
+use app\index\model\Categories as CategoryModel;
 
 /**
  * 前台首页控制器
@@ -35,4 +35,17 @@ class Index extends Home
     /**
      *
      */
+    public function getCategory()
+    {
+        $list = CategoryModel::where(['pid' => 0])->field('id,name')->select();
+        foreach ($list as $k => &$v) {
+            $sons = CategoryModel::where(['pid' => $v['id']])->field('name,img')->select();
+            foreach ($sons as &$val) {
+                $val['logo'] = "http://feiyueweb.com".get_file_path($val['img']);
+            }
+            $v['subCategoryList'] = $sons;
+        }
+       
+       return  json($list);
+    }
 }
