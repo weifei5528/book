@@ -48,12 +48,13 @@ class Category extends Admin
             $result = $this->validate($data, 'Category');
             // 验证失败 输出错误信息
             if(true !== $result) $this->error($result);
-            if ($category= CategoryModel::create($data)) {
+            $data['id'] = $id;
+            if (CategoryModel::update($data)) {
                 // 记录行为
-                action_log('catgory_edit', 'book', $category['id'], UID);
-                $this->success('新增成功', url('index'));
+                action_log('catgory_edit', 'book', $id, UID);
+                $this->success('修改成功', url('index'));
             } else {
-                $this->error('新增失败');
+                $this->error('修改失败');
             }
         }
         $info = CategoryModel::get($id);
@@ -63,6 +64,7 @@ class Category extends Admin
         ->setPageTitle('新增') // 设置页面标题
         ->addFormItems([ // 批量添加表单项
             ['text', 'name', '分类名称', '必填'],
+            ['image','img','图片','选填'],
             ['select','pid','所属分类', '', $list],
             ['radio', 'status', '状态', '', ['禁用', '启用'], 1]
         ])
@@ -95,6 +97,7 @@ class Category extends Admin
         ->setPageTitle('新增') // 设置页面标题
         ->addFormItems([ // 批量添加表单项
             ['text', 'name', '分类名称', '必填'],
+            ['image','img','图片','选填'],
             ['select','pid','所属分类', '', $list],
             ['radio', 'status', '状态', '', ['禁用', '启用'], 1]
         ])

@@ -39,7 +39,7 @@ class Index extends Home
     {
         $list = CategoryModel::where(['pid' => 0])->field('id,name')->select();
         foreach ($list as $k => &$v) {
-            $sons = CategoryModel::where(['pid' => $v['id']])->field('name,img')->select();
+            $sons = CategoryModel::where(['pid' => $v['id']])->field('name,img,id')->select();
             foreach ($sons as &$val) {
                 $val['logo'] = "http://feiyueweb.com".get_file_path($val['img']);
             }
