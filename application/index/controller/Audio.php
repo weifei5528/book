@@ -38,6 +38,17 @@ class Audio extends Home
             return get_file_path($id);
         }
     }
+    public function getAudioList($id)
+    {
+
+        //$this->setCategory();
+        $list = AudioModel::getList($id);
+        foreach ($list as $k => &$v) {
+            $info = AttModel::get($v['book_id']);
+            $v['size'] = format_bytes($info['size']);
+        }
+        return json($list);
+    }
 }
 
 ?>
