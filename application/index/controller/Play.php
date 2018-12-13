@@ -32,6 +32,14 @@ class Play extends Home
         $instance = $this->getInstance($id);
         return $instance->index($id);
     }
+    /**
+     * 添加播放次数
+     */
+    public function addClick($id) 
+    {
+        $instance = $this->getInstance($id);
+        return $instance->addClick($id);
+    }
    
 }
 

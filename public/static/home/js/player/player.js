@@ -107,8 +107,10 @@ class PlayerCreator {
             title,
             singer,
             songUrl,
+            id,
             //imageUrl
         } = this.musics.getSongByNum(this.song_index);
+        console.log(title);
         this.audio.src = songUrl;
         this.render_doms.title.html(title);
         this.render_doms.singer.html(singer);
@@ -116,11 +118,26 @@ class PlayerCreator {
         //this.render_doms.blur.css('background-image', 'url("' + imageUrl + '")');
 
         //切换列表中的item的类名 play
-        console.log($("td.pro-remove > a > i"));
-        let allI = this.song_list.find('td.pro-remove > a > i');
-        allI.eq(this.song_index).attr('class','fa fa-play');
-        allI.eq(this.song_index).siblings().attr('class','fa fa-music');
-       // this.song_list.find('td.pro-remove > a > i').eq(this.song_index).attr('class','fa fa-play').siblings().attr('class','fa fa-music');
+        console.log(this.song_index);
+//        this.song_list.find('i.fa.fa-volume-up').
+//        this.song_list.find('tr').eq(this.song_index).find('td:eq(0)').html("<i class='fa fa-volume-up'></i>");
+        this.song_list.find('i.fa.fa-pause').attr('class','fa fa-play');
+        this.song_list.find('i.fa.fa-play').eq(this.song_index).attr('class',"fa fa-pause");
+        let numEl = this.song_list.find('tr').eq(this.song_index).find('td:eq(3)');
+        console.log(numEl);
+        let num = parseInt(numEl.html()) + 1;
+        numEl.html(num);
+        this.addListenNum(id);
+    }
+    addListenNum(id) {
+    	$.ajax({
+    		url:"/index/Play/addClick/id/"+id+".html",
+    		type:"get",
+    		data:{},
+    		dateType:"json",
+    		async:true,
+    		
+    	})
     }
     //绑定各种事件
     bindEventListener() {
@@ -145,8 +162,9 @@ class PlayerCreator {
             click: this.banNotes.bind(this)
         })
         //列表点击
-        this.song_list.on('click', 'tr', (e) => {
-            let index = $(e.target).index();
+        this.song_list.on('click', 'i.fa.fa-play', (e) => {
+            let index = $(e.target).parents('tr').index();
+            console.log(index);
             this.changeSong(index);
         })
 
@@ -235,6 +253,7 @@ class PlayerCreator {
 
     //更改歌曲索引
     changeSongIndex(type) {
+    	console.log(typeof type);
         if (typeof type === 'number') {
             this.song_index = type;
         } else {

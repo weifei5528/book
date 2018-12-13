@@ -3,6 +3,13 @@
 <link rel="stylesheet" href="__STATIC__/home/fonts/player/iconfont.css">
 <link rel="stylesheet" type="text/css" media="screen" href="__HOME_CSS__/player/reset.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="__HOME_CSS__/player/player.css" />
+<style type="text/css">
+
+tbody tr:hover{
+	background:#C7EDCC;
+}
+    
+</style>
 {/block}
 {block name="content"}
 <!-- 播放器 -->
@@ -67,9 +74,10 @@
                     <table class="table table-bordered">
                         <thead>
 	                        <tr>
-	                            <th class="pro-thumbnail">名称</th>
-	                            <th class="pro-title">大小</th>
-	                            <th class="pro-price">点击量</th>
+	                        	<th class="pro-thumbnail">序号 </th>
+	                            <th class="pro-title">名称</th>
+	                            <th class="pro-thumbnail">大小</th>
+	                            <th class="pro-thumbnail">点击量</th>
 	                            <th class="pro-remove">操作</th>
 	                        </tr>
                         </thead>
@@ -77,12 +85,14 @@
                         {foreach $list as $lk => $vo}
                         	 	
                         	 <tr>
-                        	 <input type="hidden" name="mp3" value="{$vo.audio_url}" />
+                        	 	<input type="hidden" name="mp3" value="{$vo.audio_url}" />
+                        	 	<input type="hidden" name="id" value="{$vo.id}" />
                         	 	<!-- <input type="hidden" name="mp3" value="{:url('Audio/getMp3Addr',array('id' => $vo['id']))}" /> -->
-	                            <td class="pro-thumbnail">{$vo.name}</td>
-	                            <td class="pro-title">{$vo.size}</td>
-	                            <td class="pro-price">{$vo.click}</td>
-	                            <td class="pro-remove"><a href="#"><i class="fa fa-music"></i></a></td>
+                        	 	<td class="pro-thumbnail">{$lk+1}</td>
+	                            <td class="pro-title">{$vo.name}</td>
+	                            <td class="pro-thumbnail">{$vo.size}</td>
+	                            <td class="pro-thumbnail">{$vo.click}</td>
+	                            <td class="pro-remove"><i class="fa fa-play"></i></td>
 	                        </tr>
                         {/foreach}
                        
@@ -94,6 +104,7 @@
         <!-- Wishlist Page Content End -->
     </div>
 {/block}
+
 {block name="script"}
 <script src="__HOME_JS__/player/utill.js"></script>
 <script src="__HOME_JS__/player/player.js"></script>
@@ -102,9 +113,10 @@
 		let player = new Player();
 		$("#musics > tr").each(function(){
 			var song ={};
-			song.title = $(this).children('.pro-thumbnail').html();
+			song.title = $(this).children('.pro-title').html();
 			song.songUrl = $(this).children('input').val();
 			song.singer = "未知";
+			song.id = $(this).children('[name=id]').val();
 			player.addSong(song);
 		});
 		console.log(player.musics.songs)

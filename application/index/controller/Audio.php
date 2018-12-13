@@ -18,7 +18,7 @@ class Audio extends Home
         $this->setCategory();
         $list = AudioModel::getList($id);
         foreach ($list as $k => &$v) {
-            $info = AttModel::get($v['book_id']);
+            $info = AttModel::get($v['audio']);
             $v['size'] = format_bytes($info['size']);
         }
         $this->assign('list',$list);
@@ -48,6 +48,17 @@ class Audio extends Home
             $v['size'] = format_bytes($info['size']);
         }
         return json($list);
+    }
+    /**
+     * 添加点击次数
+     */
+    public function addClick($id)
+    {
+        if(AudioModel::where(['id' => $id])->setInc('click')) {
+            return $this->success("添加成功！");
+        } else {
+            return $this->error("添加失败！");
+        }
     }
 }
 
