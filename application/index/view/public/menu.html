@@ -12,14 +12,14 @@
 								{empty name="cat.sons"}
 									<li class="category-item-parent {if $k >= 3} hidden {/if}">
 										<a href="#" class="category-item">
-											<img src="__HOME_IMG__/icons/camera.png" alt={$cat.name}"/>
+											<img src="{:get_file_path($cat['img'])}" alt={$cat.name}"/>
 											<span>{$cat.name}</span>
 										</a>
 									</li>
 								{else/}
 									<li class="category-item-parent dropdown-show {if $k >= 3} hidden {/if}">
 										<a href="#" class="category-item arrow-toggle">
-											<img src="__HOME_IMG__/icons/desktop.png" alt="{$cat.name}"/>
+											<img src="{:get_file_path($cat['img'])}" alt="{$cat.name}"/>
 											<span>{$cat.name}</span>
 										</a>
 										<ul class="mega-menu-wrap dropdown-nav">
