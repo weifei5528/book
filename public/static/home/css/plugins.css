@@ -3,6 +3,10 @@
  * Copyright 2013-2018 David Deutsch
  * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
  */
+.index_bg {
+	background-image: url('../img/bg_bottom_content.png');
+	height: 158px;
+}
 .owl-carousel, .owl-carousel .owl-item {
     -webkit-tap-highlight-color: transparent;
     position: relative

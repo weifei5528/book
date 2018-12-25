@@ -17,7 +17,7 @@ class Books extends Model
 
     public static function getRandomList($cat_id, $num = 10 )
     {
-        $data = self::where(['status' => 1 ,'cat_id' => $cat_id])->column('name','id');
+        $data = self::where(['status' => 1 ,'cat_id' => $cat_id, ])->column('name','id');
         if(empty($data))
             return [];
         $num = count($data) < $num ? count($data) : $num ;
